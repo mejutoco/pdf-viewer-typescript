@@ -1,0 +1,68 @@
+{
+  "name": "viewer-typescript-jesus-mejuto-gonzalez",
+  "version": "1.0.0",
+  "description": "A pdf viewer in typescript",
+  "targets": {
+    "default": {
+      "distDir": "./dist"
+    }
+  },
+  "browserslist": "> 0.5%",
+  "prettier": {
+    "trailingComma": "es5",
+    "tabWidth": 4,
+    "semi": false,
+    "singleQuote": true
+  },
+  "scripts": {
+    "build": "parcel build ./src/index.ts",
+    "test": "jest ./src/",
+    "e2e": "npx playwright test",
+    "e2e_ui": "npx playwright test --ui",
+    "e2e_report": "npx playwright show-report",
+    "lint": "eslint ./src --fix",
+    "check": "tsc --noEmit",
+    "format": "prettier --write ./src/*.ts ./src/**/*.ts",
+    "generate_docs": "typedoc --entryPointStrategy expand ./src --out ./docs",
+    "serve": "npx serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pdf-tools-recruiting/viewer-typescript-jesus-mejuto-gonzalez.git"
+  },
+  "author": "jesus mejuto gonzalez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pdf-tools-recruiting/viewer-typescript-jesus-mejuto-gonzalez/issues"
+  },
+  "homepage": "https://github.com/pdf-tools-recruiting/viewer-typescript-jesus-mejuto-gonzalez#readme",
+  "devDependencies": {
+    "@babel/core": "^7.23.9",
+    "@babel/preset-env": "^7.23.9",
+    "@babel/preset-typescript": "^7.23.3",
+    "@parcel/packager-ts": "^2.11.0",
+    "@parcel/transformer-typescript-types": "^2.11.0",
+    "@playwright/test": "^1.41.2",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.11.16",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
+    "babel-jest": "^29.7.0",
+    "buffer": "^6.0.3",
+    "eslint": "^8.56.0",
+    "events": "^3.3.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "parcel": "^2.11.0",
+    "playwright": "^1.41.2",
+    "prettier": "^3.2.4",
+    "process": "^0.11.10",
+    "serve": "^14.2.1",
+    "ts-jest": "^29.1.2",
+    "typedoc": "^0.25.7",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "pdfjs-dist": "^2.5.207"
+  }
+}
