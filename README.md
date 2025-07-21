@@ -1,5 +1,5 @@
 
-# PDF viewer
+# PDF viewer Typescript no-dependencies experiment
 
 A code experiment on creating a pdf viewer without dependencies. Not even React.
 It recreates basic component concepts in plain Typescript.
