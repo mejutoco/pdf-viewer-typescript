@@ -2,7 +2,21 @@
 # PDF viewer
 
 A code experiment on creating a pdf viewer without dependencies. Not even React.
-It recreates basic concepts of React in plain Typescript.
+It recreates basic component concepts in plain Typescript.
+
+![A simple pdf viewer experiment in Typescript](screenshot.png "A simple pdf viewer experiment in Typescript")
+
+## Features
+
+The viewer allows to load a PDF and:
+
+- Next and previous page navigation.
+- Add comments (sticky notes) at coordinates and page.
+- Move comments.
+- Select some of the comments on the page or on a sidebar.
+- Hide selected or all comments .
+- Export comments as standard file.
+
 
 ## How to run
 
@@ -15,7 +29,7 @@ npm install
 Build and serve the project with
 
 ```bash
-npm run build && npm run server
+npm run build && npm run serve
 ```
 
 This will make the project available at http://localhost:3000
@@ -25,7 +39,7 @@ This will make the project available at http://localhost:3000
 We are not using any other libraries than PDF js dist to render pages as images:
 
 ### PDF js dist(https://www.npmjs.com/package/pdfjs-dist) 
-This seemed to be the closest library for the functionality. It had many problems with typings, and the bundle is much bigger because of a worker option.
+This seemed to be the closest library for our usecase. It had some problems with typings, and the bundle is much bigger because of a worker option.
 
 ### No other libraries
 Because no JSX/React/x was the objective of the experiment, I reimplemented a very minimal component framework from scratch.
@@ -105,8 +119,8 @@ npm run generate_docs
 
 
 ## Future improvements
-### Import bonus feature
-Left out because of lack of time. We have the export only.
+### Import feature
+Left out for now. We have the export only.
 
 ### Decrease bundle size (pdf js dist worker)
 An option needed for the library increased the bundle size by a lot. Explore how to remove it.
