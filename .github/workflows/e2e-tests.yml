@@ -1,0 +1,49 @@
+name: E2E Tests with Playwright
+
+on:
+    push:
+        branches: [master]
+    pull_request:
+        branches: [master]
+
+jobs:
+    e2e-tests:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: Set up Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: '20'
+
+            - name: Install dependencies
+              run: npm ci
+
+            - name: Build application
+              run: npm run build
+
+            - name: Install Playwright browsers
+              run: npx playwright install --with-deps
+
+            - name: Run server and tests
+              run: |
+                  # Start server in background
+                  npm run server &
+                  SERVER_PID=$!
+
+                  # Wait for server to be ready
+                  sleep 10
+
+                  # Run tests
+                  npm run e2e
+
+                  # Store test exit code
+                  TEST_EXIT_CODE=$?
+
+                  # Kill server process
+                  kill $SERVER_PID
+
+                  # Exit with test status code
+                  exit $TEST_EXIT_CODE
