@@ -29,7 +29,7 @@ jobs:
 
             - name: Run server and tests
               run: |
-                  npm run server &
+                  npm run serve &
                   SERVER_PID=$!
                   sleep 10
                   npm run e2e
