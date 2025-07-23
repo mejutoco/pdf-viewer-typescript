@@ -8,7 +8,7 @@ on:
 
 jobs:
     e2e-tests:
-        runs-on: ubuntu-latest
+        runs-on: ubuntu-22.04 # Changed from ubuntu-latest
         steps:
             - name: Checkout repository
               uses: actions/checkout@v4
@@ -25,53 +25,14 @@ jobs:
               run: npm run build
 
             - name: Install Playwright browsers
-              run: |
-                  # First install required system dependencies
-                  sudo apt-get update
-                  sudo apt-get install -y \
-                      libasound2t64 \
-                      libatk-bridge2.0-0 \
-                      libatk1.0-0 \
-                      libatspi2.0-0 \
-                      libcairo2 \
-                      libcups2 \
-                      libdbus-1-3 \
-                      libdrm2 \
-                      libgbm1 \
-                      libglib2.0-0 \
-                      libgtk-3-0 \
-                      libnspr4 \
-                      libnss3 \
-                      libpango-1.0-0 \
-                      libx11-6 \
-                      libxcb1 \
-                      libxcomposite1 \
-                      libxdamage1 \
-                      libxext6 \
-                      libxfixes3 \
-                      libxkbcommon0 \
-                      libxrandr2
-
-                  # Then install Playwright browsers
-                  npx playwright install --with-deps
+              run: npx playwright install --with-deps
 
             - name: Run server and tests
               run: |
-                  # Start server in background
                   npm run server &
                   SERVER_PID=$!
-
-                  # Wait for server to be ready
                   sleep 10
-
-                  # Run tests
                   npm run e2e
-
-                  # Store test exit code
                   TEST_EXIT_CODE=$?
-
-                  # Kill server process
                   kill $SERVER_PID
-
-                  # Exit with test status code
                   exit $TEST_EXIT_CODE
